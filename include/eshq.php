@@ -6,7 +6,7 @@ class ESHQ
     $this->url    = $options['url']    || $_ENV['ESHQ_URL'];
     $this->key    = $options['key']    || $_ENV['ESHQ_KEY'];
     $this->secret = $options['secret'] || $_ENV['ESHQ_SECRET'];
-    if (!($this->url && $this->key && $this->secret) {
+    if (!($this->url && $this->key && $this->secret)) {
       throw("ESHQ Configuration missing - make sure all environment variables are set");
     }
   }

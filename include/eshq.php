@@ -7,7 +7,7 @@ class ESHQ
     $this->key    = $options['key']    || $_ENV['ESHQ_KEY'];
     $this->secret = $options['secret'] || $_ENV['ESHQ_SECRET'];
     if (!($this->url && $this->key && $this->secret)) {
-      throw("ESHQ Configuration missing - make sure all environment variables are set");
+      throw new Exception("ESHQ Configuration missing - make sure all environment variables are set");
     }
   }
 
@@ -43,8 +43,12 @@ class ESHQ
 
   private function post($path, $params) {
     $ch = curl_init();
+    
+    $url = $this->url . $path;
 
-    curl_setopt($ch, CURLOPT_URL, $this->url . $path);
+    echo "Post to $url";
+
+    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 
@@ -53,7 +57,7 @@ class ESHQ
     curl_close($ch);
 
     if (empty($result)) {
-      throw("Request to ESHQ failed");
+      throw new Exception("Request to ESHQ failed");
     } else if ($status == 200 || $status == 201 || $status == 204) {
       return $result;
     }

@@ -5,7 +5,7 @@ require_once '../include/eshq.php';
 $msg  = $_POST['msg'];
 $nick = $_POST['nick'];
 
-if (!$msg) { throw('No message'); }
+if (!$msg) { die('No message'); }
 
 $eshq = new ESHQ();
 $eshq->send(array(

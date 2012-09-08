@@ -14,6 +14,6 @@ $eshq->send(array(
     'nick' => $nick,
     'msg'  => $msg
   ))
-);
+));
 
 ?>

@@ -47,8 +47,6 @@ class ESHQ
     $url    = $this->url . $path;
     $fields = array_merge($params, $this->credentials());
 
-    error_log("Post fields: ". print_r($fields,true));
-
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
@@ -63,6 +61,7 @@ class ESHQ
       return $result;
     }
 
+    error_log("Error from ESHQ. URL: $url - Fields: " . print_r($fields, true));
     return false;
   }
 

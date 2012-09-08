@@ -21,7 +21,7 @@ class ESHQ
     $response = $this->post("/socket", array("channel" => $options['channel']));
     if ($response) {
       $json = json_decode($response);
-      return $json["socket"];
+      return $json->socket;
     } else {
       return false;
     }

@@ -57,7 +57,7 @@ class ESHQ
     );
 
     $ch = curl_init();
-    curl_setopt_array($ch, ($options + $defaults));
+    curl_setopt_array($ch, $defaults);
     if( ! $result = curl_exec($ch))
     {
       throw new Exception("Request to ESHQ failed");

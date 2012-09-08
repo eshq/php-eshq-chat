@@ -7,7 +7,7 @@
     var output = $("#messages");
     var input  = $("#message input");
 
-    var eshq = new ESHQ("chat");
+    var eshq = new ESHQ("chat", {auth_url: "/eshq/socket.php"});
 
     eshq.onopen = function(e) {
       $("#overlay, .login-box").hide();
@@ -22,7 +22,7 @@
     $("#message").submit(function(e) {
       e.preventDefault();
 
-      $.post("/eshq/message", {nick: nick, msg: input.val()});
+      $.post("/eshq/message.php", {nick: nick, msg: input.val()});
       input.val("");
     });
   });

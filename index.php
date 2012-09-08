@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>EventSource HQ Chat Example</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <h1 class="header">ESHQ Chat</h1>
@@ -30,8 +30,8 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script src="/json2.js"></script>
+    <script src="/js/json2.js"></script>
     <script src="https://app.eventsourcehq.com/es.js"></script>
-    <script src="/chat.js"></script>
+    <script src="/js/chat.js"></script>
   </body>
 </html>

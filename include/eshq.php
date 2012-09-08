@@ -75,6 +75,7 @@ class ESHQ
   }
 
   private function token($time) {
+    error_log("Generating token '{$this->key}:{$this->secret}:{$time}'");
     return sha1($this->key . ":" . $this->secret . ":" . $time);
   }
 }

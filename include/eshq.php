@@ -42,10 +42,23 @@ class ESHQ
 
 
   private function post($path, $params) {
-    return http_post_fields(
-      $this->url . $path,
-      array_merge($params, $this->credentials())
-    );
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $this->url . $path);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+
+    $result = curl_exec($ch);
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if (empty($result)) {
+      throw("Request to ESHQ failed");
+    } else if ($status == 200 || $status == 201 || $status == 204) {
+      return $result;
+    }
+
+    return false;
   }
 
   private function credentials() {

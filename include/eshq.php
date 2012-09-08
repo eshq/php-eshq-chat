@@ -41,14 +41,14 @@ class ESHQ
   }
 
 
-  private post($path, $params) {
+  private function post($path, $params) {
     return http_post_fields(
       $this->url . $path,
       array_merge($params, $this->credentials())
     );
   }
 
-  private credentials() {
+  private function credentials() {
     $time = time();
     return array(
       'timestamp' => $time,
@@ -57,7 +57,7 @@ class ESHQ
     );
   }
 
-  private token($time) {
+  private function token($time) {
     return sha1($this->key . ":" . $this->secret . ":" . $time);
   }
 }

@@ -44,11 +44,12 @@ class ESHQ
   private function post($path, $params) {
     $ch = curl_init();
 
-    $url = $this->url . $path;
+    $url    = $this->url . $path;
+    $fields = array_merge($params, $this->credentials());
 
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
 
     $result = curl_exec($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);

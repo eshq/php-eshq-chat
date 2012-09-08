@@ -42,28 +42,28 @@ class ESHQ
 
 
   private function post($path, $params) {
-    $ch = curl_init();
-
     $url    = $this->url . $path;
     $fields = array_merge($params, $this->credentials());
 
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+    $defaults = array(
+        CURLOPT_POST => 1,
+        CURLOPT_HEADER => 0,
+        CURLOPT_URL => $url,
+        CURLOPT_FRESH_CONNECT => 1,
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_FORBID_REUSE => 1,
+        CURLOPT_TIMEOUT => 10,
+        CURLOPT_POSTFIELDS => http_build_query($fields)
+    );
 
-    $result = curl_exec($ch);
-    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if (empty($result)) {
+    $ch = curl_init();
+    curl_setopt_array($ch, ($options + $defaults));
+    if( ! $result = curl_exec($ch))
+    {
       throw new Exception("Request to ESHQ failed");
-    } else if ($status == 200 || $status == 201 || $status == 204) {
-      return $result;
     }
-
-    error_log("Error from ESHQ. URL: $url - Fields: " . print_r($fields, true));
-    return false;
+    curl_close($ch); 
+    return $result; 
   }
 
   private function credentials() {

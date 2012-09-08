@@ -1,6 +1,6 @@
 <?php
 
-require_once '../includes/eshq.php';
+require_once '../include/eshq.php';
 
 $channel = $_POST['channel'];
 

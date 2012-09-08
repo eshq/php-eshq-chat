@@ -43,10 +43,8 @@ class ESHQ
 
   private function post($path, $params) {
     $ch = curl_init();
-    
-    $url = $this->url . $path;
 
-    echo "Post to $url";
+    $url = $this->url . $path;
 
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);

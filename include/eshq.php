@@ -14,8 +14,10 @@ class ESHQ
   /**
    * Get the token for opening a connection to a new channel.
    *
-   * @param $options array("channel" => "your-channel")
-   * @return A token for opening an EventSource connection to the channel.
+   * @param array $options
+   *  array("channel" => "your-channel")
+   * @return string
+   *  A token for opening an EventSource connection to the channel.
    */
   public function open($options) {
     $response = $this->post("/socket", array("channel" => $options['channel']));
@@ -30,7 +32,10 @@ class ESHQ
   /**
    * Send a message to a channel
    *
-   * @param $options array("channel" => "your-channel", "data" => "data-to-send")
+   * @param array $options
+   *  array("channel" => "your-channel", "data" => "data-to-send")
+   * @return
+   *  true or false
    */
   public function send($options) {
     $response = $this->post("/event", array(

@@ -58,7 +58,7 @@ class ESHQ
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_FORBID_REUSE => 1,
         CURLOPT_TIMEOUT => 10,
-        CURLOPT_POSTFIELDS => http_build_query($fields)
+        CURLOPT_POSTFIELDS => http_build_query($fields),
         CURLOPT_SSL_VERIFYPEER => 0
     );
 

@@ -59,6 +59,7 @@ class ESHQ
         CURLOPT_FORBID_REUSE => 1,
         CURLOPT_TIMEOUT => 10,
         CURLOPT_POSTFIELDS => http_build_query($fields)
+        CURLOPT_SSL_VERIFYPEER => 0
     );
 
     $ch = curl_init();
